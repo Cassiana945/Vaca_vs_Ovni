@@ -38,16 +38,24 @@ public class PontosDatabase extends SQLiteOpenHelper {
     }
 
     public int maiorPontuacao() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT MAX(" + C_PONTOS + ") FROM " + TB_PONTUACAO;
-        Cursor cursor = db.rawQuery(query, null);
-        int pontos = 0;
-        if (cursor.moveToFirst()) {
-            pontos = cursor.getInt(0);
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        try {
+            db = this.getReadableDatabase();
+            String query = "SELECT MAX(" + C_PONTOS + ") FROM " + TB_PONTUACAO;
+            cursor = db.rawQuery(query, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                return cursor.getInt(0);
+            }
+            return 0;
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            if (db != null) {
+                db.close();
+            }
         }
-        cursor.close();
-        db.close();
-        return pontos;
     }
 
     @Override
