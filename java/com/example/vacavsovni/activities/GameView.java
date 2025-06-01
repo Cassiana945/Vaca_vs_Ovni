@@ -1,4 +1,4 @@
-package com.example.vacavsovni.activities;
+package com.example.vacavsovni.view;
 
 
 import android.app.Activity;
@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -20,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.example.vacavsovni.R;
+import com.example.vacavsovni.activities.GameOverActivity;
 import com.example.vacavsovni.database.PontosDatabase;
 import com.example.vacavsovni.model.Ovni;
 
@@ -31,7 +33,8 @@ import android.os.Handler;
 
 public class GameView extends View {
 
-    Bitmap anim_fundo, chao, vaca;
+    Bitmap chao, vaca;
+    AnimationDrawable anim_fundo;
     Rect recAnim_Fundo, rectChao;
     Context context;
     Handler handler;
@@ -42,22 +45,32 @@ public class GameView extends View {
     int pontos = 0;
     private static int dWidth, dHeight;
     Random random;
+    long startTime;
     float vacaX, vacaY;
     float oldX;
     float oldVacaX;
     ArrayList<Ovni> ovnis;
     MediaPlayer playerPerdeu, playerMusica;
-    PontosDatabase bdPontos = new PontosDatabase(context);
+    PontosDatabase bdPontos;
 
     public GameView(Context context) {
         super(context);
         this.context = context;
 
+        this.startTime = System.currentTimeMillis();
 
-        anim_fundo = BitmapFactory.decodeResource(getResources(), R.drawable.anim_backgroung);
+        bdPontos = new PontosDatabase(context);
+
+        anim_fundo = (AnimationDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.anim_background, null);
+        anim_fundo.setBounds(0, 0, dWidth, dHeight);
+        anim_fundo.start();
+
         chao = BitmapFactory.decodeResource(getResources(), R.drawable.chao);
-        vaca = BitmapFactory.decodeResource(getResources(), R.drawable.vaca);
 
+        vaca = BitmapFactory.decodeResource(getResources(), R.drawable.vaca);
+//        int novaLargura = dWidth / 5;
+//        int novaAltura = (vaca.getHeight() * novaLargura) / vaca.getWidth(); // mantém proporção
+//        vaca = Bitmap.createScaledBitmap(vaca, novaLargura, novaAltura, true);
 
         Display display = ((Activity) getContext()).getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -108,7 +121,7 @@ public class GameView extends View {
         super.onDraw(canvas);
 
 
-        canvas.drawBitmap(anim_fundo, null, recAnim_Fundo, null);
+        anim_fundo.draw(canvas);
         canvas.drawBitmap(chao, null, rectChao, null);
         canvas.drawBitmap(vaca, vacaX, vacaY, null);
 
@@ -123,31 +136,32 @@ public class GameView extends View {
             }
 
             ovniAtual.setOvniY(ovniAtual.getOvniY() + ovniAtual.getOvniVelocity());
-
             if (ovniAtual.getOvniY() + ovniAtual.getOvniHeight() >= dHeight - chao.getHeight()) {
                 pontos += 10;
                 ovnis.get(i).resetPosition();
             }
         }
 
-        for (int i = 0; i < ovnis.size(); i++) {
-            Ovni ovniAtual = ovnis.get(i);
-            if (ovniAtual.getOvniX() + ovniAtual.getOvniWidth() >= vacaX
-                    && ovniAtual.getOvniX() <= vacaX + vaca.getWidth()
-                    && ovniAtual.getOvniY() + ovniAtual.getOvniWidth() >= vacaY
-                    && ovniAtual.getOvniY() + ovniAtual.getOvniWidth() <= vacaY + vaca.getHeight()) {
+        if (System.currentTimeMillis() - startTime > 2000) {
+            for (int i = 0; i < ovnis.size(); i++) {
+                Ovni ovniAtual = ovnis.get(i);
+                if (ovniAtual.getOvniX() + ovniAtual.getOvniWidth() >= vacaX
+                        && ovniAtual.getOvniX() <= vacaX + vaca.getWidth()
+                        && ovniAtual.getOvniY() + ovniAtual.getOvniWidth() >= vacaY
+                        && ovniAtual.getOvniY() + ovniAtual.getOvniWidth() <= vacaY + vaca.getHeight()) {
 
 
-                playerMusica.stop();
-                playerPerdeu.start();
-                bdPontos.addPontuacao(pontos);
-                ovnis.get(i).resetPosition();
+                    playerMusica.stop();
+                    playerPerdeu.start();
+                    bdPontos.addPontuacao(pontos);
+                    ovnis.get(i).resetPosition();
 
 
-                Intent intent = new Intent(context, GameOver.class);
-                intent.putExtra("pontos", pontos);
-                context.startActivity(intent);
-                ((Activity) context).finish();
+                    Intent intent = new Intent(context, GameOverActivity.class);
+                    intent.putExtra("pontos", pontos);
+                    context.startActivity(intent);
+                    ((Activity) context).finish();
+                }
             }
         }
 
@@ -198,3 +212,5 @@ public class GameView extends View {
 
 
 }
+
+ 
