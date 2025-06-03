@@ -160,7 +160,8 @@ public class GameView extends View {
                     Intent intent = new Intent(context, GameOverActivity.class);
                     intent.putExtra("pontos", pontos);
                     context.startActivity(intent);
-                    ((Activity) context).finish();
+                   ((Activity) context).overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                   ((Activity) context).finish();
                 }
             }
         }
