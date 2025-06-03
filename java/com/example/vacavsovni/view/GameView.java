@@ -61,22 +61,22 @@ public class GameView extends View {
 
         bdPontos = new PontosDatabase(context);
 
-        anim_fundo = (AnimationDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.anim_background, null);
-        anim_fundo.setBounds(0, 0, dWidth, dHeight);
+        setBackgroundResource(R.drawable.anim_background);
+        anim_fundo = (AnimationDrawable) getBackground();
         anim_fundo.start();
 
         chao = BitmapFactory.decodeResource(getResources(), R.drawable.chao);
-
-        vaca = BitmapFactory.decodeResource(getResources(), R.drawable.vaca);
-//        int novaLargura = dWidth / 5;
-//        int novaAltura = (vaca.getHeight() * novaLargura) / vaca.getWidth(); // mantém proporção
-//        vaca = Bitmap.createScaledBitmap(vaca, novaLargura, novaAltura, true);
 
         Display display = ((Activity) getContext()).getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         dWidth = size.x;
         dHeight = size.y;
+
+        vaca = BitmapFactory.decodeResource(getResources(), R.drawable.vaca);
+        int novaLargura = dWidth /3;
+        int novaAltura = (vaca.getHeight() * novaLargura) / vaca.getWidth(); // mantém proporção
+        vaca = Bitmap.createScaledBitmap(vaca, novaLargura, novaAltura, true);
 
 
         recAnim_Fundo = new Rect(0, 0, dWidth, dHeight);
@@ -100,7 +100,7 @@ public class GameView extends View {
 
         playerMusica = MediaPlayer.create(context, R.raw.musica_tema);
         playerPerdeu = MediaPlayer.create(context, R.raw.som_perdeu);
-
+        playerMusica.start();
 
         random = new Random();
 
@@ -209,6 +209,8 @@ public class GameView extends View {
     public static int getDHeight() {
         return dHeight;
     }
+
+
 
 
 }
