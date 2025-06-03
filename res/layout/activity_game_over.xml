@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="@drawable/fundo_opaco">
+
+    <!-- Troféu -->
+    <ImageView
+        android:id="@+id/trofeu"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/trofeu"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:layout_marginBottom="16dp" />
+
+
+    <!-- Pontuação -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sua pontuação:"
+        android:fontFamily="@font/jersey_regular"
+        android:textSize="30sp"
+        android:textColor="#2D2929"
+        android:shadowColor="#E5C928"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="20"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/pontos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1075"
+        android:textSize="48sp"
+        android:textColor="#80CF1F"
+        android:shadowColor="#000000"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="15"
+        android:fontFamily="@font/jersey_regular"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Recorde -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="maior pontuação:"
+        android:fontFamily="@font/jersey_regular"
+        android:textSize="27sp"
+        android:textColor="#2D2929"
+        android:shadowColor="#FFD900"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="20"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/maior_ponto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1075"
+        android:textSize="35sp"
+        android:textColor="#FEF189"
+        android:fontFamily="@font/jersey_regular"
+        android:layout_gravity="center"
+        android:layout_marginBottom="40dp" />
+
+    <!-- Botão Novo Jogo -->
+    <ImageButton
+        android:id="@+id/btnNovoJogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/novo_jogo"
+        android:contentDescription="novo jogo"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Botão Sair -->
+    <ImageButton
+        android:id="@+id/btnSair"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sair"
+        android:contentDescription="sair"
+        android:layout_gravity="center" />
+
+</LinearLayout>
