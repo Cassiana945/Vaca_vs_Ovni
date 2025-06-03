@@ -5,7 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.example.vacavsovni.activities.GameView;
+import com.example.vacavsovni.view.GameView;
 import com.example.vacavsovni.R;
 
 import java.util.Random;
@@ -17,9 +17,20 @@ public class Ovni {
     private final Random random;
 
     public Ovni(Context context) {
-        ovni[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.ovni1);
-        ovni[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.ovni2);
-        ovni[2] = BitmapFactory.decodeResource(context.getResources(), R.drawable.ovni3);
+        Bitmap original1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.ovni1);
+        Bitmap original2 = BitmapFactory.decodeResource(context.getResources(), R.drawable.ovni2);
+        Bitmap original3 = BitmapFactory.decodeResource(context.getResources(), R.drawable.ovni3);
+
+
+        int novaLargura = GameView.getDWidth() / 6;
+        int novaAltura1 = (original1.getHeight() * novaLargura) / original1.getWidth();
+        int novaAltura2 = (original2.getHeight() * novaLargura) / original2.getWidth();
+        int novaAltura3 = (original3.getHeight() * novaLargura) / original3.getWidth();
+
+        ovni[0] = Bitmap.createScaledBitmap(original1, novaLargura, novaAltura1, true);
+        ovni[1] = Bitmap.createScaledBitmap(original2, novaLargura, novaAltura2, true);
+        ovni[2] = Bitmap.createScaledBitmap(original3, novaLargura, novaAltura3, true);
+
         random = new Random();
         resetPosition();
     }
@@ -66,6 +77,7 @@ public class Ovni {
     public void resetPosition() {
         ovniX = random.nextInt(GameView.getDWidth() - getOvniWidth());
         ovniY = -200 + random.nextInt(600) * -1;
-        ovniVelocity = 35 + random.nextInt(16);
+        ovniVelocity = 10 + random.nextInt(6);
     }
 }
+
