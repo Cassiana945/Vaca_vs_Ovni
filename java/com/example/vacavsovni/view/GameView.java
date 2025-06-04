@@ -110,7 +110,7 @@ public class GameView extends View {
 
 
         ovnis = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             Ovni ovni = new Ovni(context);
             ovnis.add(ovni);
         }
