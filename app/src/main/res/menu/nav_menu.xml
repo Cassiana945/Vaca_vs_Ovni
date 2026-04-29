@@ -9,24 +9,40 @@
             android:title="SOBRE"
             android:fontFamily="@font/jersey_regular" />
 
-        <item android:title="Jogo desenvolvido em parceria com a UNATI" />
+        <item android:title="Projeto Integrador da PUC Goiás" />
 
 
     </group>
 
-    <item android:title="CREDITOS">
+    <item
+        android:title="CREDITOS"
+        android:enabled="false"
+        android:fontFamily="@font/kenney_blocks"
+        android:textColor="@color/black">
         <menu>
 
             <item
                 android:title="Desenvolvimento"
-                android:fontFamily="@font/jersey_regular" />
+                android:fontFamily="@font/jersey_regular"
+                android:textColor="@color/black"/>
 
             <item
+                android:title="Arthur Lacerda"
+                android:fontFamily="@font/jersey_regular"
+                android:textColor="@color/black"/>
+            <item
                 android:title="Cassiana Cruz Marciano"
-                android:fontFamily="@font/jersey_regular" />
+                android:fontFamily="@font/jersey_regular"
+                android:textColor="@color/black" />
+            <item
+                android:title="Maria Gabrielly Ferreira da Silva"
+                android:fontFamily="@font/jersey_regular"
+                android:textColor="@color/black"/>
             <item
                 android:title="Arte"
-                android:fontFamily="@font/jersey_regular" />
+                android:fontFamily="@font/jersey_regular"
+                android:textColor="@color/black"/>
+
         </menu>
     </item>
 
