@@ -178,12 +178,17 @@ public class GameView extends View {
         float touchY = event.getY();
 
 
-        if (touchY >= persoY) {
-            int action = event.getAction();
+        int action = event.getAction();
+
+
+
+        if (touchX >= persoX && touchX <= persoX + vaca.getWidth()
+                && touchY >= persoY && touchY <= persoY + vaca.getHeight()) {
 
 
             if (action == MotionEvent.ACTION_DOWN) {
-                oldX = event.getX();
+                oldX = touchX;
+                oldVacaX = persoX;
             }
 
 
@@ -191,15 +196,17 @@ public class GameView extends View {
                 float shift = oldX - touchX;
                 float newVacaX = oldVacaX - shift;
 
+
                 if (newVacaX <= 0)
                     persoX = 0;
-                else if (newVacaX >= dWidth - vaca.getWidth()) {
+                else if (newVacaX >= dWidth - vaca.getWidth())
                     persoX = dWidth - vaca.getWidth();
-                } else {
+                else
                     persoX = newVacaX;
-                }
             }
         }
+
+
         return true;
     }
 

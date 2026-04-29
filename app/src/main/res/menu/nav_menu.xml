@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="none">
+
+        <item
+            android:title="SOBRE"
+            android:fontFamily="@font/jersey_regular" />
+
+        <item android:title="Jogo desenvolvido em parceria com a UNATI" />
+
+
+    </group>
+
+    <item android:title="CREDITOS">
+        <menu>
+
+            <item
+                android:title="Desenvolvimento"
+                android:fontFamily="@font/jersey_regular" />
+
+            <item
+                android:title="Cassiana Cruz Marciano"
+                android:fontFamily="@font/jersey_regular" />
+            <item
+                android:title="Arte"
+                android:fontFamily="@font/jersey_regular" />
+        </menu>
+    </item>
+
+
+</menu>
