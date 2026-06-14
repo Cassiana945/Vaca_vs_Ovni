@@ -61,9 +61,9 @@ public class GameView extends View {
 
         bdPontos = new PontosDatabase(context);
 
-        setBackgroundResource(R.drawable.anim_background);
-        anim_fundo = (AnimationDrawable) getBackground();
-        anim_fundo.start();
+//        setBackgroundResource(R.drawable.anim_background);
+//        anim_fundo = (AnimationDrawable) getBackground();
+//        anim_fundo.start();
 
         chao = BitmapFactory.decodeResource(getResources(), R.drawable.chao);
 
@@ -121,7 +121,7 @@ public class GameView extends View {
         super.onDraw(canvas);
 
 
-        anim_fundo.draw(canvas);
+//        anim_fundo.draw(canvas);
         canvas.drawBitmap(chao, null, rectChao, null);
         canvas.drawBitmap(vaca, persoX, persoY, null);
 

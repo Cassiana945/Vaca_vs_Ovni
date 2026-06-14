@@ -50,10 +50,6 @@
         android:fontFamily="@font/jersey_regular"
         android:textSize="30sp"
         android:textColor="#2D2929"
-        android:shadowColor="#E5C928"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="15"
         android:layout_gravity="center" />
 
     <TextView
@@ -79,10 +75,6 @@
         android:fontFamily="@font/jersey_regular"
         android:textSize="27sp"
         android:textColor="#2D2929"
-        android:shadowColor="#FFD900"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="15"
         android:layout_gravity="center" />
 
     <TextView
